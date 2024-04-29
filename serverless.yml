@@ -1,0 +1,25 @@
+service: rs-checkout-api
+frameworkVersion: '3'
+variablesResolutionMode: 20210219
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  stage: ${opt:stage, 'dev'}
+  region: us-east-1
+  environment:
+    ENV_STAGE: ${opt:stage, 'dev'}
+
+plugins:
+  - serverless-offline
+
+functions:
+  cartService:
+    handler: handler.setupDatabase
+    events:
+      - http:
+          path: cart
+          method: get
+          cors: true
+    environment:
+      CONNECTION_STR: ''

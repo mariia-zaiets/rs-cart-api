@@ -1,0 +1,1 @@
+export { setupDatabaseHandler } from './setupDatabase';
